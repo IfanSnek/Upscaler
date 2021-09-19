@@ -1,18 +1,21 @@
 from pil import Image, ImageFilter, ImageEnhance
 import urllib.request
 import os
+import multiprocessing
+import argparse
 
-size = 4032
+parser = argparse.ArgumentParser(description='Upscale an image.')
+parser.add_argument('path', type=str,
+                    help='Path to the image')
+
+args = parser.parse_args()
+
+# Best not to touch
 bright = 50
 sat = (20,20,20)
 bias = 80
 
-print("Downloading")
-
-urllib.request.urlretrieve(f"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/CornSnake.jpg/{size}px-CornSnake.jpg", r"in.jpeg")
-urllib.request.urlretrieve(f"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/CornSnake.jpg/{size/2}px-CornSnake.jpg", r"orig.jpeg")
-
-im = Image.open(r"in.jpeg")
+im = Image.open(args.path)
 ot = Image.new("RGB", ((im.width*2), (im.height*2)))
 px = im.load()
 ox = ot.load()
@@ -20,8 +23,6 @@ w = im.width
 h = im.height
 
 print("Upscaling")
-
-
 
 def add(first,second):
   return (first[0]+second[0]-bright,first[1]+second[1]-bright,first[2]+second[2]-bright)
