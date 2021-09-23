@@ -1,11 +1,16 @@
 from PIL import Image, ImageFilter, ImageEnhance
 import numpy as np
+import argparse
 
-path = "./path.to.image"
+parser = argparse.ArgumentParser(description='Upscale an image.')
+parser.add_argument('path', type=str,
+                    help='Path to the image')
+
+args = parser.parse_args()
 
 print("Loading")
 
-im = Image.open(path)
+im = Image.open(args.path)
 px = np.array(im)
 w = im.width
 h = im.height
