@@ -9,4 +9,7 @@ python imageupscaler.py [path to image]
 
 or
 
-Edit the path vaiable in PorcaroAlgorithm.py and run
+python PorcaroAlgorthm.py [path to image]
+# Requirements
+pillow
+numpy
