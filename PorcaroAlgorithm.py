@@ -1,4 +1,4 @@
-from PIL import Image, ImageEnhance
+from pil import Image, ImageEnhance
 import numpy as np
 import argparse
 import time
@@ -10,7 +10,7 @@ t = time.time()
 
 print("Loading")
 
-path = args.path
+path = parser.parse_args().path
 
 im = Image.open(path)
 px = np.array(im)
